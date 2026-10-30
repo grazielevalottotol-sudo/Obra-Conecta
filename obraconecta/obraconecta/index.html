@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Encontre profissionais da construção civil, compare orçamentos e planeje sua obra com a Obra Conecta.">
+  <title>Obra Conecta | Sua obra começa com a escolha certa</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><path d="M7 22.5 24 8l17 14.5"/><path d="M13 21v19h22V21"/><path d="M20 40V27h8v13"/><path d="M7 31h6m22 0h6"/></svg></span><span>Obra<span>Conecta</span></span></a>
+    <nav><a href="#categorias">Categorias</a><a href="#como-funciona">Como funciona</a><a href="#profissionais">Profissionais</a></nav>
+    <div class="top-actions"><button class="btn btn-light" id="login-open">Entrar</button><button class="btn btn-primary" id="signup-open">Cadastrar</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">CONSTRUÇÃO • REFORMA • SERVIÇOS</span>
+        <h1>Sua obra começa com a <em>escolha certa.</em></h1>
+        <p>Encontre profissionais da construção civil, compare propostas e tire seu projeto do papel com mais confiança.</p>
+        <form id="search-form" class="search-box">
+          <label><span>Qual serviço você procura?</span><input id="search-term" placeholder="Ex.: pedreiro, eletricista, arquiteto"></label>
+          <label><span>Onde?</span><input id="search-city" placeholder="Cidade ou bairro" value="Londrina, PR"></label>
+          <button class="btn btn-primary" type="submit">Buscar profissionais <b>→</b></button>
+        </form>
+        <small class="muted">Começando por Londrina e região.</small>
+      </div>
+      <div class="hero-art">
+        <div class="art-card"><div class="art-icon">⌂</div><strong>Obra bem feita começa com boas conexões.</strong><span>Profissionais • Orçamentos • Confiança</span></div>
+        <div class="floating-tag tag-one">✓ Compare propostas</div>
+        <div class="floating-tag tag-two">+ Profissionais locais</div>
+      </div>
+    </section>
+
+    <section class="section" id="categorias">
+      <div class="section-heading"><div><span class="eyebrow">ENCONTRE O QUE PRECISA</span><h2>Explore por categoria</h2></div><p>Do planejamento ao acabamento, encontre o profissional certo para cada etapa.</p></div>
+      <div class="category-grid">
+        <button class="category" data-category="Pedreiro"><span>🧱</span><b>Pedreiros</b><small>Alvenaria e reformas</small></button>
+        <button class="category" data-category="Engenheiro civil"><span>📐</span><b>Engenheiros</b><small>Projetos e acompanhamento</small></button>
+        <button class="category" data-category="Arquiteto"><span>🏠</span><b>Arquitetos</b><small>Projetos e interiores</small></button>
+        <button class="category" data-category="Eletricista"><span>💡</span><b>Eletricistas</b><small>Instalações e reparos</small></button>
+        <button class="category" data-category="Encanador"><span>🔧</span><b>Encanadores</b><small>Hidráulica</small></button>
+        <button class="category" data-category="Pintor"><span>🖌️</span><b>Pintores</b><small>Pintura e acabamento</small></button>
+        <button class="category" data-category="Gesseiro"><span>🪜</span><b>Gesseiros</b><small>Forros e drywall</small></button>
+        <button class="category" data-category="Outros"><span>🛠️</span><b>Outros serviços</b><small>Veja mais especialidades</small></button>
+      </div>
+    </section>
+
+    <section class="cta-band" id="como-funciona">
+      <div><span class="eyebrow light">SIMPLES E DIRETO</span><h2>Seu próximo projeto merece bons profissionais.</h2><p>Conte o que você precisa e organize as propostas em um só lugar.</p></div>
+      <button class="btn btn-white" id="budget-open">Solicitar orçamento <b>→</b></button>
+    </section>
+
+    <section class="section" id="profissionais">
+      <div class="section-heading"><div><span class="eyebrow">REDE OBRA CONECTA</span><h2>Profissionais encontrados</h2></div><span class="notice">Os perfis reais aparecerão aqui após os cadastros.</span></div>
+      <div id="professional-list" class="professional-grid"><div class="empty-state"><span>🌱</span><b>A rede está começando a crescer.</b><p>Cadastre-se como profissional para fazer parte da Obra Conecta.</p><button class="btn btn-primary" id="professional-open">Quero anunciar meus serviços</button></div></div>
+    </section>
+
+    <section class="join-section">
+      <div><span class="eyebrow">É PROFISSIONAL DA CONSTRUÇÃO?</span><h2>Mostre seu trabalho. Conquiste novas oportunidades.</h2><p>Crie seu perfil gratuito e apresente seus serviços para pessoas que estão planejando uma obra ou reforma.</p></div>
+      <button class="btn btn-primary" id="professional-open-2">Cadastrar como profissional</button>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><path d="M7 22.5 24 8l17 14.5"/><path d="M13 21v19h22V21"/><path d="M20 40V27h8v13"/><path d="M7 31h6m22 0h6"/></svg></span><span>Obra<span>Conecta</span></span></a><p>Conectando pessoas e profissionais para construir melhor.</p><small>© 2026 Obra Conecta. Plataforma em fase inicial.</small></footer>
+
+  <dialog id="auth-dialog">
+    <form method="dialog" class="dialog-head"><b id="auth-title">Criar conta</b><button class="x" aria-label="Fechar">×</button></form>
+    <form id="auth-form" class="dialog-body">
+      <label>Seu nome<input id="auth-name" required placeholder="Nome completo"></label>
+      <label>E-mail<input id="auth-email" type="email" required placeholder="voce@email.com"></label>
+      <label>Senha<input id="auth-password" type="password" required minlength="6" placeholder="Mínimo de 6 caracteres"></label>
+      <label>Quero me cadastrar como<select id="auth-role"><option value="cliente">Cliente</option><option value="profissional">Profissional</option></select></label>
+      <button class="btn btn-primary full" type="submit">Continuar</button><p class="form-message" id="auth-message"></p>
+    </form>
+  </dialog>
+
+  <dialog id="budget-dialog">
+    <form method="dialog" class="dialog-head"><b>Solicitar orçamento</b><button class="x" aria-label="Fechar">×</button></form>
+    <form id="budget-form" class="dialog-body">
+      <label>Seu nome<input id="budget-name" required placeholder="Nome completo"></label>
+      <label>E-mail<input id="budget-email" type="email" required placeholder="voce@email.com"></label>
+      <label>Serviço necessário<input id="budget-service" required placeholder="Ex.: reforma de banheiro"></label>
+      <label>Cidade e bairro<input id="budget-location" required placeholder="Ex.: Centro, Londrina"></label>
+      <label>Conte um pouco sobre sua obra<textarea id="budget-description" required rows="4" placeholder="Descreva o serviço, medidas aproximadas e prazo..."></textarea></label>
+      <button class="btn btn-primary full" type="submit">Enviar solicitação</button><p class="form-message" id="budget-message"></p>
+    </form>
+  </dialog>
+
+  <dialog id="professional-dialog">
+    <form method="dialog" class="dialog-head"><b>Cadastro de profissional</b><button class="x" aria-label="Fechar">×</button></form>
+    <form id="professional-form" class="dialog-body">
+      <label>Nome ou empresa<input id="pro-name" required placeholder="Nome profissional"></label>
+      <label>E-mail<input id="pro-email" type="email" required placeholder="voce@email.com"></label>
+      <label>Especialidade<select id="pro-category"><option>Pedreiro</option><option>Engenheiro civil</option><option>Arquiteto</option><option>Eletricista</option><option>Encanador</option><option>Pintor</option><option>Gesseiro</option><option>Outro</option></select></label>
+      <label>Cidade/região atendida<input id="pro-location" required placeholder="Ex.: Londrina e região"></label>
+      <label>Apresentação e experiência<textarea id="pro-description" rows="3" required placeholder="Conte sobre seus serviços e experiência"></textarea></label>
+      <label>Telefone/WhatsApp<input id="pro-phone" placeholder="(43) 99999-9999"></label>
+      <button class="btn btn-primary full" type="submit">Enviar cadastro</button><p class="form-message" id="pro-message"></p>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
